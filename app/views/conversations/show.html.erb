@@ -6,8 +6,7 @@
   <%= form_for @conversation, :url => delete_messages_conversation_path(@conversation), :method => :delete do |f| %>
       <%= f.submit "Delete Selected Messages" %>
       <%= check_box_tag "all", 1, false, :class => "select_all" %>  Delete All
-      <% @conversation.messages.each do |message| %>
-          <% next if message.deleted_by?(current_user) %>
+      <% @messages.each do |message| %>
           <li>
             <div>
               <%= check_box_tag "message_ids[]", message.id %>
@@ -25,6 +24,7 @@
           </li>
 
       <% end %>
+      <%= will_paginate @messages %>
   <% end %>
 </ul>
 

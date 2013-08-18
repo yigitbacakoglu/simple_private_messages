@@ -10,6 +10,7 @@ class ConversationsController < ApplicationController
 
   def show
     @conversation.read!(current_user)
+    @messages = @conversation.messages.not_deleted(current_user).paginate(:page => params[:page], :per_page => 10)
   end
 
   def new

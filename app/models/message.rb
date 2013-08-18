@@ -12,6 +12,10 @@ class Message < ActiveRecord::Base
     where("read_at IS NULL")
   end
 
+  def self.not_deleted(user)
+    where("(sender_id = ? AND sender_deleted_at IS NULL) OR (receiver_id = ? AND receiver_deleted_at IS NULL)", user.id, user.id)
+  end
+
   def deleted_by?(user)
     (self.sender == user && !self.sender_deleted_at.blank?) || (self.receiver == user && !self.receiver_deleted_at.blank?)
   end
