@@ -1,0 +1,22 @@
+<div class="page-header">
+  <h1>Log in</h1>
+</div>
+
+<%= form_tag sessions_path, :class => 'form-horizontal' do %>
+    <div class="control-group">
+      <%= label_tag "Email", "Email", :class => 'control-label' %>
+      <div class="controls">
+        <%= email_field_tag :email, params[:email], :class => 'text_field' %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= label_tag "Password", "Password", :class => 'control-label' %>
+      <div class="controls">
+        <%= password_field_tag :password, "", :class => 'text_field' %>
+      </div>
+    </div>
+    <div class="form-actions">
+      <%= submit_tag "Login", :class => "btn btn-primary" %> or
+      <%= link_to "Sign Up", new_user_path, :class => 'btn' %>
+    </div>
+<% end %>

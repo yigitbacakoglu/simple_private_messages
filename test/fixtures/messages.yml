@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  sender_id: 1
+  receiver_id: 1
+  body: MyText
+  read_at: 2013-08-18 13:20:53
+  deleted_at: 2013-08-18 13:20:53
+
+two:
+  sender_id: 1
+  receiver_id: 1
+  body: MyText
+  read_at: 2013-08-18 13:20:53
+  deleted_at: 2013-08-18 13:20:53

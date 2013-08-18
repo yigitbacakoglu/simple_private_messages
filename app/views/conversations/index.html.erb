@@ -1,0 +1,39 @@
+<%= form_for current_user, :url => delete_conversations_conversations_path, :method => :delete do |f| %>
+    <%= f.submit "Delete Selected" %>
+    <%= check_box_tag "all", 1, false, :class => "select_all" %>  Delete All
+
+    <% current_user.conversations.each do |conversation| %>
+        <% next unless conversation.has_active_message?(current_user) %>
+        <div class="<%= 'unread' if conversation.has_unread_messages?(current_user) %>">
+          <%= check_box_tag "conversation_ids[]", conversation.id %>
+          <a href="<%= conversation_path(conversation) %>">
+            <div class="box">
+              <div class="left">
+                <%= conversation.target_for(current_user).email %>
+                <%= format_date(conversation.messages.first.created_at) %>
+              </div>
+              <div class="right">
+                <b><%= conversation.messages.first.body.truncate(70) %></b>
+              </div>
+            </div>
+          </a>
+        </div>
+    <% end %>
+<% end %>
+
+<script>
+    $('.select_all').on('click', function () {
+        if ($(this).is(":checked")) {
+            $('input:checkbox').attr("checked", true);
+        }
+        else {
+            $('input:checkbox').attr("checked", false);
+
+        }
+    })
+</script>
+<style>
+  .unread {
+      background: grey;
+  }
+</style>

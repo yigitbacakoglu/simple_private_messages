@@ -1,0 +1,23 @@
+<% if @conversation.errors.any? %>
+    <div class="well well-small" style="border: 1px solid red;">
+      <ul>
+        <% @conversation.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+<% end %>
+
+<div class="new-message">
+  <%= form_for @conversation do |f| %>
+      <%= hidden_field_tag "with", params[:with] %>
+      <%= f.fields_for :messages do |m| %>
+          <%= m.text_area :body %>
+          <%= m.hidden_field :receiver_id, :value => params[:with] %>
+      <% end %>
+      <%= f.hidden_field :with_user_id, :value => params[:with] %>
+
+      <%= f.submit "Send" %>
+
+  <% end %>
+</div>

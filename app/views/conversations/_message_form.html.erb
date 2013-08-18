@@ -1,0 +1,8 @@
+<div class="new-message">
+  <%= form_for @conversation, :url => new_message_conversation_path(@conversation), :method => :put do |f| %>
+
+      <%= text_area_tag "body" %>
+      <%= f.submit "Send" %>
+
+  <% end %>
+</div>

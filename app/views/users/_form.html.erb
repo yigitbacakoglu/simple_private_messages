@@ -1,0 +1,42 @@
+<%= form_for @user, :html => {:class => 'form-horizontal'} do |f| %>
+
+    <% if @user.errors.any? %>
+        <div class="well well-small" style="border: 1px solid red;">
+          <ul>
+            <% @user.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+
+    <div class="control-group">
+      <%= f.label :email, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.email_field :email, :class => 'text_field' %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :password, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.password_field :password, :class => 'text_field' %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :password_confirmation, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.password_field :password_confirmation, :class => 'text_field' %>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <%= f.submit button_name, :class => 'btn btn-primary' %>
+      <% if @user.new_record? %>
+          or
+          <%= link_to "Have an account?",
+                      new_session_path, :class => 'btn' %>
+      <% end %>
+    </div>
+<% end %>
